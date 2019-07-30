@@ -12,7 +12,7 @@ import java.math.BigInteger;
 public class LoginActivity extends AppCompatActivity {
     EditText etPhone;
     Button btnLogin;
-//Test comment
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
