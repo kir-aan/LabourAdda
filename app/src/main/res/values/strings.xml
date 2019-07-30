@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Labor</string>
+    <string name="phoneno">enter phone number</string>
+    <string name="login">Login</string>
+    <string name="contractor">Contractor</string>
+    <string name="labourer">Labourer</string>
+    <string name="name">Name</string>
+    <string name="aadhaarid">ID</string>
+    <string name="age">Age</string>
+    <string name="address_work">Address</string>
+    <string name="done">Done</string>
+    <string name="contractor_info">Contractor Info</string>
+    <string name="accept">Accept</string>
+    <string name="reject">Reject</string>
+    <string name="hire">Hire</string>
+    <string name="list_of_labourers">List of Labourers</string>
+    <string-array name="skillset">
+        <item>Choose Skill</item>
+        <item>Masonry</item>
+        <item>Carpentry</item>
+        <item>Plumbing</item>
+        <item>Electrician</item>
+        <item>Painting</item>
+    </string-array>
+    <string-array name="namescol">
+        <item>Labour1</item>
+        <item>Labour2</item>
+        <item>Labour3</item>
+        <item>Labour4</item>
+        <item>Labour5</item>
+        <item>Labour6</item>
+    </string-array>
+
+    <string-array name="agecol">
+        <item>25</item>
+        <item>28</item>
+        <item>33</item>
+        <item>31</item>
+        <item>20</item>
+        <item>36</item>
+    </string-array>
+
+</resources>
