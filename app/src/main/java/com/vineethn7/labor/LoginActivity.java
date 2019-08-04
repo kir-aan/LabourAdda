@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(etPhone.getText().toString().isEmpty() || etPhone.getText().toString().trim().length() != 10)
+                if(etPhone.getText().toString().trim().isEmpty() || etPhone.getText().toString().trim().length() != 10)
                 {
                     Toast.makeText(LoginActivity.this, "Please enter valid phone number!", Toast.LENGTH_SHORT).show();
                 }

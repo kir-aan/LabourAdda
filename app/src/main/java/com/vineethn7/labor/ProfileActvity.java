@@ -40,8 +40,8 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
             btnDone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(etAge.getText().toString().isEmpty()||etID.getText().toString().isEmpty()||etName.getText().toString().isEmpty()
-                    ||etLoc.getText().toString().isEmpty())
+                    if(etAge.getText().toString().trim().isEmpty()||etID.getText().toString().trim().isEmpty()||etName.getText().toString().trim().isEmpty()
+                    ||etLoc.getText().toString().trim().isEmpty())
                     {
                         Toast.makeText(ProfileActvity.this, "Please fill all fields!", Toast.LENGTH_SHORT).show();
                     }
@@ -60,7 +60,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
             btnDone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(etAge.getText().toString().isEmpty()||etID.getText().toString().isEmpty()||etName.getText().toString().isEmpty()
+                    if(etAge.getText().toString().trim().isEmpty()||etID.getText().toString().trim().isEmpty()||etName.getText().toString().trim().isEmpty()
                             ||text.isEmpty()||text.equals("Choose Skill"))
                     {
                         Toast.makeText(ProfileActvity.this, "Please fill all fields!", Toast.LENGTH_SHORT).show();
