@@ -3,6 +3,7 @@ package com.vineethn7.labor;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -33,6 +34,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
         spSkillset.setOnItemSelectedListener(this);
 
         int code= getIntent().getIntExtra("code",0);
+
         //code == 1 --> contractor
         if(code==1)
         {
@@ -40,18 +42,29 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
             btnDone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(etAge.getText().toString().trim().isEmpty()||etID.getText().toString().trim().isEmpty()||etName.getText().toString().trim().isEmpty()
-                    ||etLoc.getText().toString().trim().isEmpty())
-                    {
+                    int allfieldsvalidflag=0;
+                    if (etAge.getText().toString().trim().isEmpty() || etID.getText().toString().trim().isEmpty() || etName.getText().toString().trim().isEmpty()
+                            || etLoc.getText().toString().trim().isEmpty()) {
                         Toast.makeText(ProfileActvity.this, "Please fill all fields!", Toast.LENGTH_SHORT).show();
                     }
-                    else
-                    {
-                        Intent intent = new Intent(ProfileActvity.this,com.vineethn7.labor.Book1Activity.class);
-                        startActivity(intent);
+
+                    //code added by basith to validate age and name
+                    else {
+                        if (Integer.parseInt(etAge.getText().toString()) > 150) {
+                            etAge.setError("Enter a valid Age");
+                            allfieldsvalidflag=1;
+                        }
+                        if(!isNameValid(etName.getText().toString().trim())){
+                            etName.setError("Enter a valid name");
+                            allfieldsvalidflag=1;
+                        }
+                        if(allfieldsvalidflag!=1) {
+                            Intent intent = new Intent(ProfileActvity.this, com.vineethn7.labor.Book1Activity.class);
+                            startActivity(intent);
+                        }
                     }
                 }
-            });
+                    });
         }
         // code == 2 -->Labour
         if(code==2)
@@ -60,15 +73,28 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
             btnDone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    int allfieldsvalidflag=0;
                     if(etAge.getText().toString().trim().isEmpty()||etID.getText().toString().trim().isEmpty()||etName.getText().toString().trim().isEmpty()
                             ||text.isEmpty()||text.equals("Choose Skill"))
                     {
                         Toast.makeText(ProfileActvity.this, "Please fill all fields!", Toast.LENGTH_SHORT).show();
                     }
-                    else
-                    {
-                        Intent intent = new Intent(ProfileActvity.this,com.vineethn7.labor.AvailabilityActivity.class);
-                        startActivity(intent);
+
+                    //code added by basith to validate age and name
+                    else {
+                        if (Integer.parseInt(etAge.getText().toString()) > 150) {
+                            etAge.setError("Enter a valid Age");
+                            allfieldsvalidflag=1;
+                        }
+                        if(!isNameValid(etName.getText().toString().trim())){
+                            etName.setError("Enter a valid name");
+                            allfieldsvalidflag=1;
+                        }
+                        if(allfieldsvalidflag!=1)
+                        {
+                            Intent intent = new Intent(ProfileActvity.this,com.vineethn7.labor.AvailabilityActivity.class);
+                            startActivity(intent);
+                        }
                     }
                 }
             });
@@ -83,5 +109,17 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    //boolean validatename()
+    //{
+        //Patterns.EMAIL_ADDRESS.matcher((CharSequence) etName).matches();
+    //}
+    static boolean isNameValid(String name){
+        //name valid only if it contains letters+Spaces at beginning,middle and end
+        if(name.matches("^[ a-zA-Z ]+$")){
+            return true;
+        }
+        return false;
     }
 }
