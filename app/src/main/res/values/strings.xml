@@ -14,6 +14,7 @@
     <string name="reject">Reject</string>
     <string name="hire">Hire</string>
     <string name="list_of_labourers">List of Labourers</string>
+    <string name="TextView">TextView</string>
     <string-array name="skillset">
         <item>Choose Skill</item>
         <item>Masonry</item>
