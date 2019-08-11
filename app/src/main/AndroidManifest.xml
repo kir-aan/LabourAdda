@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Book2Activity"></activity>
-        <activity android:name=".Book1Activity" />
+        <activity android:name=".LabourSkill" />
         <activity android:name=".AvailabilityActivity" />
         <activity android:name=".ProfileActvity" />
         <activity android:name=".SelectorActivity" />

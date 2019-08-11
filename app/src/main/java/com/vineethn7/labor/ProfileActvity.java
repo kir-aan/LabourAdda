@@ -47,7 +47,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
                     }
                     else
                     {
-                        Intent intent = new Intent(ProfileActvity.this,com.vineethn7.labor.Book1Activity.class);
+                        Intent intent = new Intent(ProfileActvity.this,com.vineethn7.labor.LabourSkill.class);
                         startActivity(intent);
                     }
                 }
