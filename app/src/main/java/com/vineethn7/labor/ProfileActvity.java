@@ -1,7 +1,7 @@
 package com.vineethn7.labor;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -56,7 +56,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
         // code == 2 -->Labour
         if(code==2)
         {
-            etLoc.setVisibility(View.GONE);
+           // etLoc.setVisibility(View.GONE);
             btnDone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
