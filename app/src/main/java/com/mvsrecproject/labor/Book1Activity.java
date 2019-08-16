@@ -1,4 +1,4 @@
-package com.vineethn7.labor;
+package com.mvsrecproject.labor;
 
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +31,7 @@ public class Book1Activity extends AppCompatActivity {
                 else
                 {
                     String skill=rb.getText().toString();
-                    Intent intent= new Intent(Book1Activity.this, com.vineethn7.labor.Book2Activity.class);
+                    Intent intent= new Intent(Book1Activity.this, com.mvsrecproject.labor.Book2Activity.class);
                     intent.putExtra("skill",skill);
                     startActivity(intent);
                 }

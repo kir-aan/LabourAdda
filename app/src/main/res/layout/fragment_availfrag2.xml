@@ -6,27 +6,10 @@
     android:orientation="vertical"
     tools:context=".availfrag2">
 
-    <TextView
-        android:id="@+id/tvContInfo"
-        android:layout_width="match_parent"
-        android:layout_height="213dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="sans-serif-condensed"
-        android:text="Contractor's Details"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="18sp"
-        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btnAccept"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Accept" />
-
-    <Button
-        android:id="@+id/btnReject"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Reject" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.vineethn7.labor;
+package com.mvsrecproject.labor;
 
 
 import android.os.Bundle;
@@ -9,8 +9,6 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.Switch;
 
 

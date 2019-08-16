@@ -1,4 +1,4 @@
-package com.vineethn7.labor;
+package com.mvsrecproject.labor;
 
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,7 +47,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
                     }
                     else
                     {
-                        Intent intent = new Intent(ProfileActvity.this,com.vineethn7.labor.Book1Activity.class);
+                        Intent intent = new Intent(ProfileActvity.this,com.mvsrecproject.labor.Book1Activity.class);
                         startActivity(intent);
                     }
                 }
@@ -67,7 +67,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
                     }
                     else
                     {
-                        Intent intent = new Intent(ProfileActvity.this,com.vineethn7.labor.AvailabilityActivity.class);
+                        Intent intent = new Intent(ProfileActvity.this,com.mvsrecproject.labor.AvailabilityActivity.class);
                         startActivity(intent);
                     }
                 }

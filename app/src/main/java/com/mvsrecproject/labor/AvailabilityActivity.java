@@ -1,4 +1,4 @@
-package com.vineethn7.labor;
+package com.mvsrecproject.labor;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentTransaction;
@@ -16,6 +16,7 @@ public class AvailabilityActivity extends AppCompatActivity{
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.fragment_container, new availfrag1());
         fragmentTransaction.commit();
+
 
     }
 }

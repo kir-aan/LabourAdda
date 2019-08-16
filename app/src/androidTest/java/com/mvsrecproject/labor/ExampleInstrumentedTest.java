@@ -1,4 +1,4 @@
-package com.vineethn7.labor;
+package com.mvsrecproject.labor;
 
 import android.content.Context;
 import androidx.test.InstrumentationRegistry;
