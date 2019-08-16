@@ -39,5 +39,6 @@
         <item>20</item>
         <item>36</item>
     </string-array>
+    <string name="title_activity_book2">Book2Activity</string>
 
 </resources>

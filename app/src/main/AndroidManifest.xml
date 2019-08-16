@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Book2Activity"></activity>
+        <activity
+            android:name=".Book2Activity"
+            android:label="@string/title_activity_book2"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".Book1Activity" />
         <activity android:name=".AvailabilityActivity" />
         <activity android:name=".ProfileActvity" />

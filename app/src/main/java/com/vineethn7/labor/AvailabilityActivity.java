@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
-//Availability layout needs to be updated
 
 public class AvailabilityActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
     Switch swAvailable;
