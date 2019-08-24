@@ -28,5 +28,6 @@
         android:layout_marginLeft="80dp"
         android:layout_marginTop="40dp"
         android:layout_marginRight="80dp"
+        android:enabled="false"
         android:text="@string/login" />
 </LinearLayout>
