@@ -7,70 +7,15 @@
     android:orientation="vertical"
     tools:context=".AvailabilityActivity">
 
-    <TextView
-        android:id="@+id/tvMyAvailablity"
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:editable="false"
-        android:gravity="center_horizontal"
-        android:text="My Availablity Status"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <Switch
-        android:id="@+id/swAvailable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:scaleX="2"
-        android:scaleY="2" />
-
-    <TextView
-        android:id="@+id/tvContInfo"
+        android:layout_height="301dp"
+        android:layout_weight="1"></FrameLayout>
+    <FrameLayout
+        android:id="@+id/fragment_container2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="@string/contractor_info"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <LinearLayout
-        android:id="@+id/llCont"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnAccept"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="6"
-            android:text="@string/accept" />
-
-        <Button
-            android:id="@+id/btnReject"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="6"
-            android:text="@string/reject" />
-
-        <ImageButton
-            android:id="@+id/ibCall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/call" />
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvComment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="This layout needs to be changed"
-        android:textSize="24sp" />
-
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="?android:attr/detailsElementBackground" />
 </LinearLayout>

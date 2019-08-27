@@ -1,7 +1,7 @@
-package com.vineethn7.labor;
+package com.mvsrecproject.labor;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,7 +31,7 @@ public class Book1Activity extends AppCompatActivity {
                 else
                 {
                     String skill=rb.getText().toString();
-                    Intent intent= new Intent(Book1Activity.this, com.vineethn7.labor.Book2Activity.class);
+                    Intent intent= new Intent(Book1Activity.this, com.mvsrecproject.labor.Book2Activity.class);
                     intent.putExtra("skill",skill);
                     startActivity(intent);
                 }

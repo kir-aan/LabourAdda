@@ -1,7 +1,7 @@
-package com.vineethn7.labor;
+package com.mvsrecproject.labor;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
                 else
                 {
                     BigInteger phoneno = new BigInteger(etPhone.getText().toString().trim());
-                    Intent intent= new Intent(LoginActivity.this, com.vineethn7.labor.SelectorActivity.class);
+                    Intent intent= new Intent(LoginActivity.this, com.mvsrecproject.labor.SelectorActivity.class);
                     intent.putExtra("PhoneNum",phoneno);
                     startActivity(intent);
                 }

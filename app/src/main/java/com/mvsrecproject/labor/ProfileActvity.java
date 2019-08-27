@@ -1,7 +1,7 @@
-package com.vineethn7.labor;
+package com.mvsrecproject.labor;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -47,7 +47,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
                     }
                     else
                     {
-                        Intent intent = new Intent(ProfileActvity.this,com.vineethn7.labor.Book1Activity.class);
+                        Intent intent = new Intent(ProfileActvity.this,com.mvsrecproject.labor.Book1Activity.class);
                         startActivity(intent);
                     }
                 }
@@ -56,7 +56,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
         // code == 2 -->Labour
         if(code==2)
         {
-            etLoc.setVisibility(View.GONE);
+           // etLoc.setVisibility(View.GONE);
             btnDone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -67,7 +67,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
                     }
                     else
                     {
-                        Intent intent = new Intent(ProfileActvity.this,com.vineethn7.labor.AvailabilityActivity.class);
+                        Intent intent = new Intent(ProfileActvity.this,com.mvsrecproject.labor.AvailabilityActivity.class);
                         startActivity(intent);
                     }
                 }
