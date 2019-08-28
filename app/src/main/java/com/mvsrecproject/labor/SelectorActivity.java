@@ -33,6 +33,8 @@ public class SelectorActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SelectorActivity.this, com.mvsrecproject.labor.ProfileActvity.class);
                 intent.putExtra("code",2);
+                String phoneNum = getIntent().getStringExtra("PhoneNum");
+                intent.putExtra("phoneNum",phoneNum);
                 startActivity(intent);
             }
         });
