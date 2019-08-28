@@ -27,12 +27,9 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
         btnDone = findViewById(R.id.btnDone);
         spSkillset= findViewById(R.id.spSkillset);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.skillset, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spSkillset.setAdapter(adapter);
-        spSkillset.setOnItemSelectedListener(this);
 
-        int code= getIntent().getIntExtra("code",0);
+
+        int code = getIntent().getIntExtra("code",0);
         //code == 1 --> contractor
         if(code==1)
         {
@@ -56,7 +53,11 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
         // code == 2 -->Labour
         if(code==2)
         {
-           // etLoc.setVisibility(View.GONE);
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.skillset, android.R.layout.simple_spinner_item);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spSkillset.setAdapter(adapter);
+            spSkillset.setOnItemSelectedListener(this);
+
             btnDone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
