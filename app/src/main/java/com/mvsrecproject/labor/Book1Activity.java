@@ -15,21 +15,28 @@ public class Book1Activity extends AppCompatActivity {
     RadioGroup rgSkills;
     RadioButton rbtn;
     Button btnSubmit;
+    int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book1);
         btnSubmit = findViewById(R.id.btnSubmit);
+        rgSkills= findViewById(R.id.rgSkills);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!rbtn.isChecked())
+                id=rgSkills.getCheckedRadioButtonId();
+
+
+                if(id==-1)
                 {
                     Toast.makeText(Book1Activity.this, "please select a skill!", Toast.LENGTH_SHORT).show();
                 }
+
                 else
                 {
+                    rbtn=findViewById(id);
                     String skill=rbtn.getText().toString();
                     Intent intent= new Intent(Book1Activity.this, com.mvsrecproject.labor.Book2Activity.class);
                     intent.putExtra("skillSelected",skill);
@@ -39,11 +46,11 @@ public class Book1Activity extends AppCompatActivity {
         });
     }
 
-    public void rbCheck(View view) {
-        rgSkills= findViewById(R.id.rgSkills);
-        int id=rgSkills.getCheckedRadioButtonId();
-        rbtn=findViewById(id);
-    }
+//    public void rbCheck(View view) {
+//        rgSkills= findViewById(R.id.rgSkills);
+//        int id=rgSkills.getCheckedRadioButtonId();
+//        rbtn=findViewById(id);
+//    }
 
     @Override
     public void onBackPressed() {
