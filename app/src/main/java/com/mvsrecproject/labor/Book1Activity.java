@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class Book1Activity extends AppCompatActivity {
     RadioGroup rgSkills;
-    RadioButton rb;
+    RadioButton rbtn;
     Button btnSubmit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,25 +24,27 @@ public class Book1Activity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!rb.isChecked())
+                if(!rbtn.isChecked())
                 {
                     Toast.makeText(Book1Activity.this, "please select a skill!", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    String skill=rb.getText().toString();
+                    String skill=rbtn.getText().toString();
                     Intent intent= new Intent(Book1Activity.this, com.mvsrecproject.labor.Book2Activity.class);
-                    intent.putExtra("skill",skill);
+                    intent.putExtra("skillSelected",skill);
                     startActivity(intent);
                 }
             }
         });
     }
+
     public void rbCheck(View view) {
         rgSkills= findViewById(R.id.rgSkills);
         int id=rgSkills.getCheckedRadioButtonId();
-        rb=findViewById(id);
+        rbtn=findViewById(id);
     }
+
     @Override
     public void onBackPressed() {
         moveTaskToBack(true);
