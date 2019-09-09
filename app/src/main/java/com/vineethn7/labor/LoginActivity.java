@@ -14,6 +14,7 @@ import java.math.BigInteger;
 public class LoginActivity extends AppCompatActivity {
     EditText etPhone;
     Button btnLogin;
+    myDb DB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         etPhone = findViewById(R.id.etPhone);
         btnLogin = findViewById(R.id.btnLogin);
-
+        DB=new myDb(this);
 
         //code Added by basith to disable button until a valid phone no. is entered
         etPhone.addTextChangedListener(new TextWatcher() {
@@ -56,10 +57,25 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else
                 {*/
-                    BigInteger phoneno = new BigInteger(etPhone.getText().toString().trim());
-                    Intent intent= new Intent(LoginActivity.this, com.vineethn7.labor.SelectorActivity.class);
-                    intent.putExtra("PhoneNum",phoneno);
-                    startActivity(intent);
+                    //BigInteger phoneno = new BigInteger(etPhone.getText().toString().trim());
+                    String phoneNum=etPhone.getText().toString().trim();
+                    int code=DB.existsInWhichTAB("'"+phoneNum+"'");
+                    if(code==1){
+                        Intent intent= new Intent(LoginActivity.this, com.vineethn7.labor.Book1Activity.class);
+                        startActivity(intent);
+                    }
+                    else if(code==2){
+                        Intent intent= new Intent(LoginActivity.this, com.vineethn7.labor.AvailabilityActivity.class);
+                        startActivity(intent);
+                    }
+                    else{
+
+                        Intent intent= new Intent(LoginActivity.this, com.vineethn7.labor.SelectorActivity.class);
+                        intent.putExtra("PhoneNum",phoneNum);
+                        startActivity(intent);
+                    }
+
+
                 //}
             }
         });

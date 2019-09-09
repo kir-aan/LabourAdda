@@ -12,8 +12,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import static java.lang.Integer.parseInt;
+
 public class ProfileActvity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     EditText etName,etID,etAge,etLoc;
+    myDb DB;
     Spinner spSkillset;
     Button btnDone;
     String text="";
@@ -27,6 +30,8 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
         etLoc = findViewById(R.id.etLoc);
         btnDone = findViewById(R.id.btnDone);
         spSkillset= findViewById(R.id.spSkillset);
+
+        DB=new myDb(this);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.skillset, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -50,7 +55,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
 
                     //code added by basith to validate age and name
                     else {
-                        if (Integer.parseInt(etAge.getText().toString()) > 150) {
+                        if (parseInt(etAge.getText().toString()) > 150) {
                             etAge.setError("Enter a valid Age");
                             allfieldsvalidflag=1;
                         }
@@ -59,11 +64,20 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
                             allfieldsvalidflag=1;
                         }
                         if(allfieldsvalidflag!=1) {
+                            String phoneNum = getIntent().getStringExtra("PhoneNum");
+                            boolean success=DB.insertIntoC(etName.getText().toString(),phoneNum,parseInt(etAge.getText().toString()),etLoc.getText().toString());
+                            if(success==true)
+                                Toast.makeText(ProfileActvity.this, "INserted into db", Toast.LENGTH_SHORT).show();
+                            else
+                                Toast.makeText(ProfileActvity.this, "insertion into db fail", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(ProfileActvity.this, com.vineethn7.labor.Book1Activity.class);
                             startActivity(intent);
                         }
                     }
+
                 }
+
+
                     });
         }
         // code == 2 -->Labour
@@ -82,7 +96,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
 
                     //code added by basith to validate age and name
                     else {
-                        if (Integer.parseInt(etAge.getText().toString()) > 150) {
+                        if (parseInt(etAge.getText().toString()) > 150) {
                             etAge.setError("Enter a valid Age");
                             allfieldsvalidflag=1;
                         }
@@ -92,6 +106,13 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
                         }
                         if(allfieldsvalidflag!=1)
                         {
+                            String phoneNum = getIntent().getStringExtra("PhoneNum");
+                            boolean success=DB.insertIntoL(etName.getText().toString(),phoneNum,parseInt(etAge.getText().toString()),etLoc.getText().toString(),text);
+                            if(success==true)
+                                Toast.makeText(ProfileActvity.this, "INserted into db", Toast.LENGTH_SHORT).show();
+                            else
+                                Toast.makeText(ProfileActvity.this, "insertion into db fail", Toast.LENGTH_SHORT).show();
+
                             Intent intent = new Intent(ProfileActvity.this,com.vineethn7.labor.AvailabilityActivity.class);
                             startActivity(intent);
                         }
