@@ -1,6 +1,5 @@
 package com.vineethn7.labor;
 
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,7 +17,7 @@ public class Book2Activity extends AppCompatActivity
     RecyclerView recyclerView;
 
     RecyclerView.Adapter myAdapter;
-    //RecyclerView.LayoutManager layoutManager;
+    RecyclerView.LayoutManager layoutManager;
 
 
     @Override
@@ -27,49 +26,47 @@ public class Book2Activity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book2);
 
+        people=new ArrayList<Person>();
+
         recyclerView=findViewById(R.id.list);
         btnHire=findViewById(R.id.btnHire);
-        initItems();
-        //recyclerView.setHasFixedSize(true);
 
-        /*layoutManager=new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);*/
+
+        people.add(new Person("labour1","35",false));
+        people.add(new Person("labour2","20",false));
+        people.add(new Person("labour3","45",false));
+        people.add(new Person("labour4","50",false));
+        people.add(new Person("labour5","25",false));
+        people.add(new Person("labour6","48",false));
+        people.add(new Person("labour7","25",false));
+        people.add(new Person("labour8","23",false));
+        people.add(new Person("labour9","29",false));
+
+
+        myAdapter=new PersonAdapter(people);
+        recyclerView.setAdapter(myAdapter);
+        recyclerView.setHasFixedSize(true);
+
+        layoutManager=new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
 
         btnHire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                String str = "Check items:\n";
+                String data = "";
+                ArrayList<Person> people= ((PersonAdapter) myAdapter)
+                        .getPersonist();
 
-                for (int i=0; i<people.size(); i++){
-                    if (people.get(i).isChecked()){
-                        str += i + "\n";
+                for (int i = 0; i < people.size(); i++) {
+                    Person singlePerson = people.get(i);
+                    if (singlePerson.isChecked() == true) {
+
+                        data = data + "\n" + singlePerson.getName().toString();
                     }
+                    Toast.makeText(Book2Activity.this, data, Toast.LENGTH_SHORT).show();
                 }
-                Toast.makeText(Book2Activity.this, str, Toast.LENGTH_SHORT).show();
             }
         });
-
-        people=new ArrayList<Person>();
-        myAdapter=new PersonAdapter(this,people);
-
-    }
-
-    private void initItems() {
-        people=new ArrayList<Person>();
-
-        TypedArray arrayName = getResources().obtainTypedArray(R.array.namescol);
-        TypedArray arrayAge = getResources().obtainTypedArray(R.array.agecol);
-
-        for(int i=0; i<arrayAge.length(); i++){
-            String s1 = arrayName.getString(i);
-            String s2 = arrayAge.getString(i);
-            boolean b = false;
-            Person item = new Person(s1, s2, b);
-            people.add(item);
-        }
-
-        arrayName.recycle();
-        arrayAge.recycle();
     }
 }

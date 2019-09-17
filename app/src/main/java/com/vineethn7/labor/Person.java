@@ -17,6 +17,10 @@ public class Person
         return checked;
     }
 
+    public void setChecked(boolean isChecked) {
+        this.checked = checked;
+    }
+
     public String getName()
     {
         return name;
@@ -26,6 +30,7 @@ public class Person
     {
         this.name = name;
     }
+
 
     public String getAge()
     {
