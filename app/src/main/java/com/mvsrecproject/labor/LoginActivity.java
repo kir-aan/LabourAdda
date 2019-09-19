@@ -10,7 +10,7 @@ import android.widget.Toast;
 import java.math.BigInteger;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText etPhone;
+    EditText etPhone,etOTP;
     Button btnLogin;
 
     @Override
@@ -18,6 +18,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         etPhone = findViewById(R.id.etPhone);
+        etOTP = findViewById(R.id.etOTP);
         btnLogin = findViewById(R.id.btnLogin);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
