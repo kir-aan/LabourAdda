@@ -59,8 +59,9 @@ public class LoginActivity extends AppCompatActivity {
             String phonenum = etPhone.getText().toString().trim();
             @Override
             public void onClick(View v) {
-                if(phonenum.length()!=10 || etOTP.getText().toString().trim().isEmpty()){
-                    Toast.makeText(LoginActivity.this, "Enter all fields!", Toast.LENGTH_SHORT).show();
+                if(etOTP.length()<6){
+                    etOTP.setError("Enter OTP");
+                    etOTP.requestFocus();
                     return;
                 }
                 String otp = etOTP.getText().toString().trim();
@@ -125,5 +126,16 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     };
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(FirebaseAuth.getInstance().getCurrentUser()!=null){
+            Intent intent = new Intent(LoginActivity.this,SelectorActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.putExtra("PhoneNum",etPhone.getText().toString().trim());
+            startActivity(intent);
+        }
+    }
 }
 
