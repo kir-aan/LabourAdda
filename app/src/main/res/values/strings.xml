@@ -2,6 +2,7 @@
     <string name="app_name">Labor</string>
     <string name="phoneno">Enter PhoneNumber</string>
     <string name="otpNo">Enter OTP</string>
+    <string name="getotp">GET OTP</string>
     <string name="login">Login</string>
     <string name="contractor">Contractor</string>
     <string name="labourer">Labourer</string>

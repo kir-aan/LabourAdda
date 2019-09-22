@@ -27,12 +27,13 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="60dp"
-        android:text="Get OTP" />
+        android:text="@string/getotp" />
 
     <EditText
         android:id="@+id/etOTP"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginLeft="80dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="80dp"
