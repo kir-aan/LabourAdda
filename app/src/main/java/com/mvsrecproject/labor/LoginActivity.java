@@ -50,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                     etPhone.requestFocus();
                     return;
                 }
+                Toast.makeText(LoginActivity.this, "OTP sent", Toast.LENGTH_SHORT).show();
                 sendOTP(phonenum);
             }
         });
@@ -133,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
         if(FirebaseAuth.getInstance().getCurrentUser()!=null){
             Intent intent = new Intent(LoginActivity.this,SelectorActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            intent.putExtra("PhoneNum",etPhone.getText().toString().trim());
+//            intent.putExtra("PhoneNum",etPhone.getText().toString().trim());
             startActivity(intent);
         }
     }
