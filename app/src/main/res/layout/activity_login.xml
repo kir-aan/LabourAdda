@@ -20,14 +20,29 @@
         android:hint="@string/phoneno"
         android:inputType="phone" />
 
-    <Button
-        android:id="@+id/btngetotp"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="60dp"
-        android:text="@string/getotp" />
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_centerHorizontal="true"
+            android:id="@+id/btngetotp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/getotp" />
+
+        <ProgressBar
+            android:id="@+id/pbOTP"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_toRightOf="@id/btngetotp"
+            android:maxHeight="30dp"
+            android:minHeight="30dp" />
+    </RelativeLayout>
+
+
 
     <EditText
         android:id="@+id/etOTP"
