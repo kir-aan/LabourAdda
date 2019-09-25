@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,6 +28,7 @@ import java.util.concurrent.TimeUnit;
 public class LoginActivity extends AppCompatActivity {
     EditText etPhone,etOTP;
     Button btnLogin,btnGetOTP;
+    ProgressBar OTPprogressBar;
     FirebaseAuth mAuth;
     private String OTPCode;
 
@@ -38,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         etOTP = findViewById(R.id.etOTP);
         btnGetOTP = findViewById(R.id.btngetotp);
         btnLogin = findViewById(R.id.btnLogin);
+        OTPprogressBar = findViewById(R.id.OTPprogressBar);
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -51,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 Toast.makeText(LoginActivity.this, "OTP sent", Toast.LENGTH_SHORT).show();
+                OTPprogressBar.setVisibility(View.VISIBLE);
                 sendOTP(phonenum);
             }
         });

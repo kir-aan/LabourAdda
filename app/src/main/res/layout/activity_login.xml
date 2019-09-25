@@ -42,8 +42,9 @@
             android:hint="@string/otpNo"
             android:inputType="number" />
         <ProgressBar
-            android:id="@+id/pbOTP"
+            android:id="@+id/OTPprogressBar"
             style="?android:attr/progressBarStyle"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
