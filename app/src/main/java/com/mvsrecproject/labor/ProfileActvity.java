@@ -80,7 +80,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-//spinnerValue.isEmpty()||spinnerValue.equals("Choose Skill")
+
     private void addUser(){
         String name = etName.getText().toString().trim();
         int age = Integer.parseInt(etAge.getText().toString().trim());
@@ -92,8 +92,9 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
         else{
             //contractor
             if(code==1){
-                String uniqueID= databaseContractors.push().getKey();
-                Contractor contractor = new Contractor(name,age,id,location);
+                String uniqueID = databaseContractors.push().getKey();
+                Contractor contractor = new Contractor(uniqueID,name,age,id,location);
+                databaseContractors.child(uniqueID).setValue(contractor);
             }
             //Labourer
             if(code==2){
@@ -101,9 +102,12 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
                     Toast.makeText(this, "Please select valid skillset", Toast.LENGTH_SHORT).show();
                 }
                 else{
-
+                    String uniqueId = databaseLabors.push().getKey();
+                    Labors labour = new Labors(uniqueId,name,age,spinnerValue,id,location);
+                    databaseLabors.child(uniqueId).setValue(labour);
                 }
             }
+            Toast.makeText(this, "User Added!", Toast.LENGTH_SHORT).show();
         }
 
 
