@@ -16,6 +16,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
     Spinner spSkillset;
     Button btnDone;
     String text="";
+    int code;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +30,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
 
 
 
-        int code = getIntent().getIntExtra("code",0);
+        code = getIntent().getIntExtra("code",0);
         //code == 1 --> contractor
         if(code==1)
         {
@@ -44,6 +45,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
                     }
                     else
                     {
+                        addUser();
                         Intent intent = new Intent(ProfileActvity.this,com.mvsrecproject.labor.Book1Activity.class);
                         startActivity(intent);
                     }
@@ -83,6 +85,16 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    private void addUser(){
+        String name = etName.getText().toString().trim();
+        int age = Integer.parseInt(etAge.getText().toString().trim());
+        String id = etID.getText().toString().trim();
+        String location = etLoc.getText().toString().trim();
+
+
 
     }
 }
