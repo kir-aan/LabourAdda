@@ -18,7 +18,6 @@ public class Labors {
         this.AadharNum = aadharNum;
         this.LabourLocation = labourLocation;
     }
-    
 
     public String getLabourName() {
         return LabourName;
