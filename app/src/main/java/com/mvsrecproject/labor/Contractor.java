@@ -2,6 +2,7 @@ package com.mvsrecproject.labor;
 
 public class Contractor {
     String name; //contractor Name
+    String id;
     long number;
     int ContractorAge;
     String AadharNum;
@@ -12,7 +13,8 @@ public class Contractor {
         this.number=number;
     }
 
-    public Contractor(String name, int contractorAge, String aadharNum, String contractorLocation) {
+    public Contractor(String id,String name, int contractorAge, String aadharNum, String contractorLocation) {
+        this.id = id;
         this.name = name;
         this.ContractorAge = contractorAge;
         this.AadharNum = aadharNum;
