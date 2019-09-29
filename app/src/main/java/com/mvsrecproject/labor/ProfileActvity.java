@@ -15,7 +15,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
     EditText etName,etID,etAge,etLoc;
     Spinner spSkillset;
     Button btnDone;
-    String text="";
+    String spinnerValue="";
     int code;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
                 @Override
                 public void onClick(View v) {
                     if(etAge.getText().toString().isEmpty()||etID.getText().toString().isEmpty()||etName.getText().toString().isEmpty()
-                            ||text.isEmpty()||text.equals("Choose Skill"))
+                            ||spinnerValue.isEmpty()||spinnerValue.equals("Choose Skill"))
                     {
                         Toast.makeText(ProfileActvity.this, "Please fill all fields!", Toast.LENGTH_SHORT).show();
                     }
@@ -80,7 +80,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        text = parent.getItemAtPosition(position).toString();
+        spinnerValue = parent.getItemAtPosition(position).toString();
     }
 
     @Override
