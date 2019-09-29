@@ -21,7 +21,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
     String spinnerValue="";
     int code;
 
-    DatabaseReference databaseLabors;
+    DatabaseReference databaseLabors,databaseContractors;
 
 
     @Override
@@ -35,7 +35,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
         btnDone = findViewById(R.id.btnDone);
         spSkillset= findViewById(R.id.spSkillset);
         databaseLabors = FirebaseDatabase.getInstance().getReference("Labors");
-
+        databaseContractors = FirebaseDatabase.getInstance().getReference("Contractors");
 
         code = getIntent().getIntExtra("code",0);
         //code == 1 --> contractor
@@ -45,17 +45,9 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
             btnDone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(etAge.getText().toString().isEmpty()||etID.getText().toString().isEmpty()||etName.getText().toString().isEmpty()
-                    ||etLoc.getText().toString().isEmpty())
-                    {
-                        Toast.makeText(ProfileActvity.this, "Please fill all fields!", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
-                        addUser();
-                        Intent intent = new Intent(ProfileActvity.this,com.mvsrecproject.labor.Book1Activity.class);
-                        startActivity(intent);
-                    }
+                    addUser();
+                    Intent intent = new Intent(ProfileActvity.this,com.mvsrecproject.labor.Book1Activity.class);
+                    startActivity(intent);
                 }
             });
         }
@@ -70,16 +62,10 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
             btnDone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(etAge.getText().toString().isEmpty()||etID.getText().toString().isEmpty()||etName.getText().toString().isEmpty()
-                            ||spinnerValue.isEmpty()||spinnerValue.equals("Choose Skill"))
-                    {
-                        Toast.makeText(ProfileActvity.this, "Please fill all fields!", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
-                        Intent intent = new Intent(ProfileActvity.this,com.mvsrecproject.labor.AvailabilityActivity.class);
-                        startActivity(intent);
-                    }
+                    addUser();
+                    Intent intent = new Intent(ProfileActvity.this,com.mvsrecproject.labor.AvailabilityActivity.class);
+                    startActivity(intent);
+
                 }
             });
         }
@@ -94,13 +80,31 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
+//spinnerValue.isEmpty()||spinnerValue.equals("Choose Skill")
     private void addUser(){
         String name = etName.getText().toString().trim();
         int age = Integer.parseInt(etAge.getText().toString().trim());
         String id = etID.getText().toString().trim();
         String location = etLoc.getText().toString().trim();
+        if(name.isEmpty()||age<=0||id.isEmpty()||location.isEmpty()){
+            Toast.makeText(this, "Please enter valid information", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            //contractor
+            if(code==1){
+                String uniqueID= databaseContractors.push().getKey();
+                Contractor contractor = new Contractor(name,age,id,location);
+            }
+            //Labourer
+            if(code==2){
+                if(spinnerValue.isEmpty()||spinnerValue.equals("Choose Skill")){
+                    Toast.makeText(this, "Please select valid skillset", Toast.LENGTH_SHORT).show();
+                }
+                else{
 
+                }
+            }
+        }
 
 
     }
