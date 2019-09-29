@@ -2,6 +2,7 @@ package com.mvsrecproject.labor;
 
 public class Labors {
     String LabourName;
+    String id;
     int LabourAge;
     String LabourSkill;
     String AadharNum;
@@ -11,7 +12,8 @@ public class Labors {
 
     }
 
-    public Labors(String labourName, int labourAge, String labourSkill, String aadharNum, String labourLocation) {
+    public Labors(String id,String labourName, int labourAge, String labourSkill, String aadharNum, String labourLocation) {
+        this.id = id;
         this.LabourName = labourName;
         this.LabourAge = labourAge;
         this.LabourSkill = labourSkill;
