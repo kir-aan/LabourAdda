@@ -11,12 +11,19 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class ProfileActvity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     EditText etName,etID,etAge,etLoc;
     Spinner spSkillset;
     Button btnDone;
     String spinnerValue="";
     int code;
+
+    DatabaseReference databaseLabors;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +34,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
         etLoc = findViewById(R.id.etLoc);
         btnDone = findViewById(R.id.btnDone);
         spSkillset= findViewById(R.id.spSkillset);
-
+        databaseLabors = FirebaseDatabase.getInstance().getReference("Labors");
 
 
         code = getIntent().getIntExtra("code",0);
