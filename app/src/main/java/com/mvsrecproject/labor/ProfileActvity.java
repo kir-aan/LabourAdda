@@ -18,7 +18,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
     EditText etName,etID,etAge,etLoc;
     Spinner spSkillset;
     Button btnDone;
-    String spinnerValue="";
+//    String spinnerValue="";
     int code;
 
     DatabaseReference databaseLabors,databaseContractors;
@@ -38,42 +38,21 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
         databaseContractors = FirebaseDatabase.getInstance().getReference("Contractors");
 
         code = getIntent().getIntExtra("code",0);
-        //code == 1 --> contractor
+
         if(code==1)
-        {
             spSkillset.setVisibility(View.GONE);
-            btnDone.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    addUser();
-                    Intent intent = new Intent(ProfileActvity.this,com.mvsrecproject.labor.Book1Activity.class);
-                    startActivity(intent);
-                }
-            });
-        }
-        // code == 2 -->Labour
-        if(code==2)
-        {
-            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.skillset, android.R.layout.simple_spinner_item);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spSkillset.setAdapter(adapter);
-            spSkillset.setOnItemSelectedListener(this);
 
-            btnDone.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    addUser();
-                    Intent intent = new Intent(ProfileActvity.this,com.mvsrecproject.labor.AvailabilityActivity.class);
-                    startActivity(intent);
-
-                }
-            });
-        }
+        btnDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addUser();
+            }
+        });
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        spinnerValue = parent.getItemAtPosition(position).toString();
+//        spinnerValue = parent.getItemAtPosition(position).toString();
     }
 
     @Override
@@ -83,7 +62,11 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
 
     private void addUser(){
         String name = etName.getText().toString().trim();
-        int age = Integer.parseInt(etAge.getText().toString().trim());
+        int age;
+        if(etAge.getText().toString().isEmpty())
+            age=0;
+        else
+            age = Integer.parseInt(etAge.getText().toString().trim());
         String id = etID.getText().toString().trim();
         String location = etLoc.getText().toString().trim();
         if(name.isEmpty()||age<=0||id.isEmpty()||location.isEmpty()){
@@ -91,20 +74,20 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
         }
         else{
             //contractor
+            String uniqueID = databaseContractors.push().getKey();
             if(code==1){
-                String uniqueID = databaseContractors.push().getKey();
                 Contractor contractor = new Contractor(uniqueID,name,age,id,location);
                 databaseContractors.child(uniqueID).setValue(contractor);
             }
             //Labourer
             if(code==2){
+                String spinnerValue=spSkillset.getSelectedItem().toString();
                 if(spinnerValue.isEmpty()||spinnerValue.equals("Choose Skill")){
                     Toast.makeText(this, "Please select valid skillset", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    String uniqueId = databaseLabors.push().getKey();
-                    Labors labour = new Labors(uniqueId,name,age,spinnerValue,id,location);
-                    databaseLabors.child(uniqueId).setValue(labour);
+                    Labors labour = new Labors(uniqueID,name,age,spinnerValue,id,location);
+                    databaseLabors.child(uniqueID).setValue(labour);
                 }
             }
             Toast.makeText(this, "User Added!", Toast.LENGTH_SHORT).show();
