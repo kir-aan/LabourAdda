@@ -74,13 +74,14 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
         }
         else{
             //contractor
-            String uniqueID = databaseContractors.push().getKey();
             if(code==1){
+                String uniqueID = databaseContractors.push().getKey();
                 Contractor contractor = new Contractor(uniqueID,name,age,id,location);
                 databaseContractors.child(uniqueID).setValue(contractor);
             }
             //Labourer
             if(code==2){
+                String uniqueID = databaseLabors.push().getKey();
                 String spinnerValue=spSkillset.getSelectedItem().toString();
                 if(spinnerValue.isEmpty()||spinnerValue.equals("Choose Skill")){
                     Toast.makeText(this, "Please select valid skillset", Toast.LENGTH_SHORT).show();
