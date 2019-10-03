@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
             String phonenum = etPhone.getText().toString().trim();
             @Override
             public void onClick(View v) {
-                if(etOTP.length()<6){
+                if(etOTP.length()!=6){
                     etOTP.setError("Enter OTP");
                     etOTP.requestFocus();
                     return;
