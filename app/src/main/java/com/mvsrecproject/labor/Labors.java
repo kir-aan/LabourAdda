@@ -35,6 +35,10 @@ public class Labors {
         return LabourSkill;
     }
 
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
     public String getAadharNum() {
         return AadharNum;
     }
