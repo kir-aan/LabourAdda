@@ -95,6 +95,16 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
                 }
             }
             Toast.makeText(this, "User Added!", Toast.LENGTH_SHORT).show();
+            if(code==1){
+                Intent intent = new Intent(ProfileActvity.this,Book1Activity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+            else if(code==2){
+                Intent intent = new Intent(ProfileActvity.this,AvailabilityActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
         }
 
     }
