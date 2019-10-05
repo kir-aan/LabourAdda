@@ -7,14 +7,16 @@ public class Labors {
     String LabourSkill;
     String AadharNum;
     String LabourLocation;
+    String phoneNum;
 
     public Labors(){
 
     }
 
-    public Labors(String id,String labourName, int labourAge, String labourSkill, String aadharNum, String labourLocation) {
+    public Labors(String id,String labourName,String phoneNum ,int labourAge, String labourSkill, String aadharNum, String labourLocation) {
         this.id = id;
         this.LabourName = labourName;
+        this.phoneNum = phoneNum;
         this.LabourAge = labourAge;
         this.LabourSkill = labourSkill;
         this.AadharNum = aadharNum;
