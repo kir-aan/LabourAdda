@@ -21,6 +21,11 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.math.BigInteger;
 import java.util.concurrent.TimeUnit;
@@ -30,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin,btnGetOTP;
     ProgressBar OTPprogressBar;
     FirebaseAuth mAuth;
+    DatabaseReference db;
     private String OTPCode;
 
     @Override
@@ -132,14 +138,43 @@ public class LoginActivity extends AppCompatActivity {
         }
     };
 
+    public void nextActivity(int x){
+        Intent intent;
+        if(x==1){
+           intent = new Intent(LoginActivity.this,AvailabilityActivity.class);
+           intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+           startActivity(intent);
+       }
+        else{
+            intent = new Intent(LoginActivity.this,Book1Activity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
         if(FirebaseAuth.getInstance().getCurrentUser()!=null){
-            Intent intent = new Intent(LoginActivity.this,SelectorActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//            intent.putExtra("PhoneNum",etPhone.getText().toString().trim());
-            startActivity(intent);
+//            Intent intent = new Intent(LoginActivity.this,SelectorActivity.class);
+            db = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+                db.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.hasChild("labourSkill"))
+                        nextActivity(1);
+                    else
+                        nextActivity(0);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(LoginActivity.this, databaseError.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
         }
     }
 }
