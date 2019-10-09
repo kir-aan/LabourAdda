@@ -5,6 +5,7 @@ import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -142,11 +143,13 @@ public class LoginActivity extends AppCompatActivity {
     public void startNextActivity(int x){
         Intent intent;
         if(x==0){
-            intent = new Intent(LoginActivity.this,AvailabilityActivity.class);
+            Log.i("sna","0");
+            intent = new Intent(LoginActivity.this,Book1Activity.class);
             startActivity(intent);
         }
         else{
-            intent = new Intent(LoginActivity.this,Book1Activity.class);
+            Log.i("sna","1");
+            intent = new Intent(LoginActivity.this,AvailabilityActivity.class);
             startActivity(intent);
         }
     }
@@ -159,10 +162,14 @@ public class LoginActivity extends AppCompatActivity {
             db.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if(dataSnapshot.hasChild("labourSkill"))
+                    if(dataSnapshot.hasChild("labourSkill")) {
+                        Log.i("nalabourskill","1");
                         startNextActivity(1);
-                    else
+                    }
+                    else{
+                        Log.i("nalabourskill","0");
                         startNextActivity(0);
+                    }
                 }
 
                 @Override
