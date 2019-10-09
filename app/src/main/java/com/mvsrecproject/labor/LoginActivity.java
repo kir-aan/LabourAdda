@@ -79,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                 verifyOTP(otp);
             }
         });
+        nextActivity();
     }
 
     //Method that will send OTP code.
@@ -138,35 +139,30 @@ public class LoginActivity extends AppCompatActivity {
         }
     };
 
-    public void nextActivity(int x){
+    public void startNextActivity(int x){
         Intent intent;
-        if(x==1){
-           intent = new Intent(LoginActivity.this,AvailabilityActivity.class);
-           intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-           startActivity(intent);
-       }
-        else{
-            intent = new Intent(LoginActivity.this,Book1Activity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        if(x==0){
+            intent = new Intent(LoginActivity.this,AvailabilityActivity.class);
             startActivity(intent);
         }
-
+        else{
+            intent = new Intent(LoginActivity.this,Book1Activity.class);
+            startActivity(intent);
+        }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+    public void nextActivity(){
+
         if(FirebaseAuth.getInstance().getCurrentUser()!=null){
-//            Intent intent = new Intent(LoginActivity.this,SelectorActivity.class);
             db = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-                db.addListenerForSingleValueEvent(new ValueEventListener() {
+            db.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(dataSnapshot.hasChild("labourSkill"))
-                        nextActivity(1);
+                        startNextActivity(1);
                     else
-                        nextActivity(0);
+                        startNextActivity(0);
                 }
 
                 @Override
@@ -176,6 +172,12 @@ public class LoginActivity extends AppCompatActivity {
             });
 
         }
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 }
 
