@@ -8,12 +8,12 @@ public class Labors {
     String AadharNum;
     String LabourLocation;
     String phoneNum;
-
+    boolean availabilityStatus=false;
     public Labors(){
 
     }
 
-    public Labors(String id,String labourName,String phoneNum ,int labourAge, String labourSkill, String aadharNum, String labourLocation) {
+    public Labors(String id, String labourName, String phoneNum , int labourAge, String labourSkill, String aadharNum, String labourLocation) {
         this.id = id;
         this.LabourName = labourName;
         this.phoneNum = phoneNum;
@@ -46,4 +46,6 @@ public class Labors {
     public String getLabourLocation() {
         return LabourLocation;
     }
+
+    public boolean isAvailabilityStatus() { return availabilityStatus; }
 }
