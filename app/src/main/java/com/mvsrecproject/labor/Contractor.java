@@ -6,6 +6,7 @@ public class Contractor {
     long number;
     int ContractorAge;
     String AadharNum;
+    String phoneNum;
     String ContractorLocation;
 
     public Contractor(String name,long number) {
@@ -13,9 +14,10 @@ public class Contractor {
         this.number=number;
     }
 
-    public Contractor(String id,String name, int contractorAge, String aadharNum, String contractorLocation) {
+    public Contractor(String id,String name,String phoneNum, int contractorAge, String aadharNum, String contractorLocation) {
         this.id = id;
         this.name = name;
+        this.phoneNum = phoneNum;
         this.ContractorAge = contractorAge;
         this.AadharNum = aadharNum;
         this.ContractorLocation = contractorLocation;
@@ -32,6 +34,10 @@ public class Contractor {
 //    public long getNumber() {
 //        return number;
 //    }
+
+    public String getPhoneNum() {
+        return phoneNum;
+    }
 
 //    public void setNumber(long number) {
 //        this.number = number;

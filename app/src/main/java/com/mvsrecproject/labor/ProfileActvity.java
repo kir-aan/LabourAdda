@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -73,27 +75,37 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
             Toast.makeText(this, "Please enter valid information", Toast.LENGTH_SHORT).show();
         }
         else{
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uniqueID = user.getUid();
+            String phoneNumber = user.getPhoneNumber();
             //contractor
             if(code==1){
-                String uniqueID = databaseContractors.push().getKey();
-                Contractor contractor = new Contractor(uniqueID,name,age,id,location);
+                Contractor contractor = new Contractor(uniqueID,name,phoneNumber,age,id,location);
                 databaseContractors.child(uniqueID).setValue(contractor);
             }
             //Labourer
             if(code==2){
-                String uniqueID = databaseLabors.push().getKey();
                 String spinnerValue=spSkillset.getSelectedItem().toString();
                 if(spinnerValue.isEmpty()||spinnerValue.equals("Choose Skill")){
                     Toast.makeText(this, "Please select valid skillset", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Labors labour = new Labors(uniqueID,name,age,spinnerValue,id,location);
+                    Labors labour = new Labors(uniqueID,name,phoneNumber,age,spinnerValue,id,location);
                     databaseLabors.child(uniqueID).setValue(labour);
                 }
             }
             Toast.makeText(this, "User Added!", Toast.LENGTH_SHORT).show();
+            if(code==1){
+                Intent intent = new Intent(ProfileActvity.this,Book1Activity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+            else if(code==2){
+                Intent intent = new Intent(ProfileActvity.this,AvailabilityActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
         }
-
 
     }
 }

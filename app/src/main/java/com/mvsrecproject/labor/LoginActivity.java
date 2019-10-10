@@ -5,6 +5,7 @@ import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +22,12 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.math.BigInteger;
 import java.util.concurrent.TimeUnit;
@@ -73,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                 verifyOTP(otp);
             }
         });
+        nextActivity();
     }
 
     //Method that will send OTP code.
@@ -132,15 +140,58 @@ public class LoginActivity extends AppCompatActivity {
         }
     };
 
+    public void startNextActivity(int x){
+        Intent intent;
+        if(x==0){
+            intent = new Intent(LoginActivity.this,Book1Activity.class);
+            startActivity(intent);
+        }
+        else{
+            intent = new Intent(LoginActivity.this,AvailabilityActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    public void nextActivity(){
+        DatabaseReference contractorRootNode = FirebaseDatabase.getInstance().getReference().child("Contractors");
+        DatabaseReference laborsRootNode = FirebaseDatabase.getInstance().getReference().child("Labors");
+
+
+        if(FirebaseAuth.getInstance().getCurrentUser()!=null){
+            final String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            contractorRootNode.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.hasChild(currentUser)){
+                        startNextActivity(0);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(LoginActivity.this, databaseError.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+            laborsRootNode.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                   if(dataSnapshot.hasChild(currentUser)){
+                       startNextActivity(1);
+                   }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(LoginActivity.this, databaseError.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
-        if(FirebaseAuth.getInstance().getCurrentUser()!=null){
-            Intent intent = new Intent(LoginActivity.this,SelectorActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//            intent.putExtra("PhoneNum",etPhone.getText().toString().trim());
-            startActivity(intent);
-        }
     }
 }
 
