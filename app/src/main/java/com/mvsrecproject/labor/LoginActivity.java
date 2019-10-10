@@ -26,6 +26,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.math.BigInteger;
@@ -36,7 +37,6 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin,btnGetOTP;
     ProgressBar OTPprogressBar;
     FirebaseAuth mAuth;
-    DatabaseReference db;
     private String OTPCode;
 
     @Override
@@ -143,31 +143,26 @@ public class LoginActivity extends AppCompatActivity {
     public void startNextActivity(int x){
         Intent intent;
         if(x==0){
-            Log.i("sna","0");
             intent = new Intent(LoginActivity.this,Book1Activity.class);
             startActivity(intent);
         }
         else{
-            Log.i("sna","1");
             intent = new Intent(LoginActivity.this,AvailabilityActivity.class);
             startActivity(intent);
         }
     }
 
     public void nextActivity(){
+        DatabaseReference contractorRootNode = FirebaseDatabase.getInstance().getReference().child("Contractors");
+        DatabaseReference laborsRootNode = FirebaseDatabase.getInstance().getReference().child("Labors");
+
 
         if(FirebaseAuth.getInstance().getCurrentUser()!=null){
-            db = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid());
-
-            db.addListenerForSingleValueEvent(new ValueEventListener() {
+            final String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            contractorRootNode.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if(dataSnapshot.hasChild("labourSkill")) {
-                        Log.i("nalabourskill","1");
-                        startNextActivity(1);
-                    }
-                    else{
-                        Log.i("nalabourskill","0");
+                    if(dataSnapshot.hasChild(currentUser)){
                         startNextActivity(0);
                     }
                 }
@@ -177,7 +172,19 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, databaseError.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
+            laborsRootNode.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                   if(dataSnapshot.hasChild(currentUser)){
+                       startNextActivity(1);
+                   }
+                }
 
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(LoginActivity.this, databaseError.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
     }
