@@ -45,12 +45,7 @@ public class Book1Activity extends AppCompatActivity {
             }
         });
     }
-
-//    public void rbCheck(View view) {
-//        rgSkills= findViewById(R.id.rgSkills);
-//        int id=rgSkills.getCheckedRadioButtonId();
-//        rbtn=findViewById(id);
-//    }
+    
 
     @Override
     public void onBackPressed() {
