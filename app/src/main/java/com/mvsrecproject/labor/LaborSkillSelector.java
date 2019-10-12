@@ -19,7 +19,7 @@ public class LaborSkillSelector extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book1);
+        setContentView(R.layout.activity_laborskillselector);
         btnSubmit = findViewById(R.id.btnSubmit);
         rgSkills= findViewById(R.id.rgSkills);
 
