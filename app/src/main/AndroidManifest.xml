@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".labors_selection"></activity>
-        <activity android:name=".Book1Activity" />
+        <activity android:name=".LaborSkillSelector" />
         <activity android:name=".AvailabilityActivity" />
         <activity android:name=".ProfileActvity" />
         <activity android:name=".SelectorActivity" />

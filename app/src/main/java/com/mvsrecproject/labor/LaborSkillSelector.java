@@ -9,9 +9,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-// Book1Activity --> Selecting the labourer's skill (that contractor is looking for)
+// LaborSkillSelector --> Selecting the labourer's skill (that contractor is looking for)
 
-public class Book1Activity extends AppCompatActivity {
+public class LaborSkillSelector extends AppCompatActivity {
     RadioGroup rgSkills;
     RadioButton rbtn;
     Button btnSubmit;
@@ -31,14 +31,14 @@ public class Book1Activity extends AppCompatActivity {
 
                 if(id==-1)
                 {
-                    Toast.makeText(Book1Activity.this, "please select a skill!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LaborSkillSelector.this, "please select a skill!", Toast.LENGTH_SHORT).show();
                 }
 
                 else
                 {
                     rbtn=findViewById(id);
                     String skill=rbtn.getText().toString();
-                    Intent intent= new Intent(Book1Activity.this, com.mvsrecproject.labor.labors_selection.class);
+                    Intent intent= new Intent(LaborSkillSelector.this, com.mvsrecproject.labor.labors_selection.class);
                     intent.putExtra("skillSelected",skill);
                     startActivity(intent);
                 }

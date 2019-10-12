@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -96,7 +95,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
             }
             Toast.makeText(this, "User Added!", Toast.LENGTH_SHORT).show();
             if(code==1){
-                Intent intent = new Intent(ProfileActvity.this,Book1Activity.class);
+                Intent intent = new Intent(ProfileActvity.this, LaborSkillSelector.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
