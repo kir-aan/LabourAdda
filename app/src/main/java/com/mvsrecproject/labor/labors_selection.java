@@ -44,7 +44,7 @@ public class labors_selection extends AppCompatActivity {
 
         LaborAdapter labor1 = new LaborAdapter("labor1",25);
         LaborAdapter labor2 = new LaborAdapter("labor2",20);
-        LaborAdapter labor3 = new LaborAdapter("labor3",30,true);
+        LaborAdapter labor3 = new LaborAdapter("labor3",30);
 
         LaborAdapter[] users = new LaborAdapter[]{labor1,labor2, labor3};
 
@@ -70,8 +70,7 @@ public class labors_selection extends AppCompatActivity {
         for(int i=0;i<sp.size();i++){
             if(sp.valueAt(i)){
                 LaborAdapter user= (LaborAdapter) listView.getItemAtPosition(i);
-                // Or:
-                // String s = ((CheckedTextView) listView.getChildAt(i)).getText().toString();
+
                 String s= user.getLaborName();
                 sb = sb.append(" "+s);
             }
