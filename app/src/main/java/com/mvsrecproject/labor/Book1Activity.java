@@ -38,7 +38,7 @@ public class Book1Activity extends AppCompatActivity {
                 {
                     rbtn=findViewById(id);
                     String skill=rbtn.getText().toString();
-                    Intent intent= new Intent(Book1Activity.this, com.mvsrecproject.labor.Book2Activity.class);
+                    Intent intent= new Intent(Book1Activity.this, com.mvsrecproject.labor.labors_selection.class);
                     intent.putExtra("skillSelected",skill);
                     startActivity(intent);
                 }
