@@ -5,22 +5,22 @@ import java.io.Serializable;
 public class LaborAdapter implements Serializable {
 
     private String laborName;
-    private int laborAge;
+    private String laborAge;
 
     private boolean active;
 
-    public LaborAdapter(String laborName, int laborAge)  {
+    public LaborAdapter(String laborName, String laborAge)  {
         this.laborName= laborName;
         this.laborAge = laborAge;
         this.active= false;
     }
 
 
-    public int getlaborAge() {
+    public String getlaborAge() {
         return laborAge;
     }
 
-    public void setLaborAge(int laborAge) {
+    public void setLaborAge(String laborAge) {
         this.laborAge = laborAge;
     }
 
