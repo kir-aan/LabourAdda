@@ -15,11 +15,6 @@ public class LaborAdapter implements Serializable {
         this.active= false;
     }
 
-    public LaborAdapter(String laborName, int laborAge, boolean active)  {
-        this.laborName= laborName;
-        this.laborAge = laborAge;
-        this.active= active;
-    }
 
     public int getlaborAge() {
         return laborAge;
