@@ -3,19 +3,21 @@
     package="com.mvsrecproject.labor">
 
     <application
+        android:name=".ApplicationClass"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".ApplicationClass"
         android:theme="@style/AppTheme">
-        <activity android:name="com.mvsrecproject.labor.Book2Activity"></activity>
-        <activity android:name="com.mvsrecproject.labor.Book1Activity" />
-        <activity android:name="com.mvsrecproject.labor.AvailabilityActivity" />
-        <activity android:name="com.mvsrecproject.labor.ProfileActvity" />
-        <activity android:name="com.mvsrecproject.labor.SelectorActivity" />
-        <activity android:name="com.mvsrecproject.labor.LoginActivity">
+        <activity android:name=".labors_selection"></activity>
+        <activity android:name=".laborsSelector" />
+        <activity android:name=".Book2Activity" />
+        <activity android:name=".Book1Activity" />
+        <activity android:name=".AvailabilityActivity" />
+        <activity android:name=".ProfileActvity" />
+        <activity android:name=".SelectorActivity" />
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
