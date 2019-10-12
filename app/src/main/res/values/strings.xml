@@ -24,25 +24,12 @@
         <item>Electrician</item>
         <item>Painting</item>
     </string-array>
-    <string-array name="namescol">
-        <item>Labour1</item>
-        <item>Labour2</item>
-        <item>Labour3</item>
-        <item>Labour4</item>
-        <item>Labour5</item>
-        <item>Labour6</item>
-    </string-array>
 
-    <string-array name="agecol">
-        <item>25</item>
-        <item>28</item>
-        <item>33</item>
-        <item>31</item>
-        <item>20</item>
-        <item>36</item>
-    </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name_age">NAME(AGE)</string>
+    <string name="status">STATUS</string>
+    <string name="send_request">SEND REQUEST</string>
 
 </resources>
