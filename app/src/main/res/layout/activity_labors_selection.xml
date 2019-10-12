@@ -11,6 +11,43 @@
     android:orientation="vertical"
     android:gravity="fill_horizontal">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="NAME(AGE)" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/tvAge"-->
+<!--            style="@style/TextAppearance.AppCompat.Title"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:ellipsize="end"-->
+<!--            android:maxLines="1"-->
+<!--            android:text="AGE" />-->
+
+        <TextView
+            android:id="@+id/tvStatus"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="15dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="STATUS" />
+
+    </RelativeLayout>
+
 
     <ListView
         android:layout_width="fill_parent"
@@ -19,13 +56,13 @@
         android:layout_weight="1" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_height="50dp"
-        android:text="Print Selected Items"
         android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="center"
-        android:onClick="printSelectedItems" />
+        android:layout_marginTop="20dp"
+        android:onClick="printSelectedItems"
+        android:text="SEND REQUEST" />
 </LinearLayout>
 
 
