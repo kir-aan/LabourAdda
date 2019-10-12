@@ -1,5 +1,6 @@
 package com.mvsrecproject.labor;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -12,10 +13,17 @@ import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 
 public class labors_selection extends AppCompatActivity {
 
     public static final String TAG = "ListViewExample";
+    DatabaseReference laborRef;
 
     private ListView listView;
 
@@ -24,6 +32,7 @@ public class labors_selection extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_labors_selection);
 
+        laborRef= FirebaseDatabase.getInstance().getReference("Labors");
 
         listView = (ListView)findViewById(R.id.listView);
 
@@ -40,17 +49,42 @@ public class labors_selection extends AppCompatActivity {
                 user.setActive(!currentCheck);
             }
         });
-        //
 
-        LaborAdapter labor1 = new LaborAdapter("labor1",25);
-        LaborAdapter labor2 = new LaborAdapter("labor2",20);
-        LaborAdapter labor3 = new LaborAdapter("labor3",30);
+        final String skillSelected=getIntent().getStringExtra("skillSelected").trim();
+        final ArrayAdapter<LaborAdapter> arrayAdapter
+                = new ArrayAdapter<LaborAdapter>(this, android.R.layout.simple_list_item_checked);
+        laborRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                LaborAdapter[] labors;
+                for(DataSnapshot ds: dataSnapshot.getChildren()){
+                    if(ds.child("labourSkill").getValue().equals(skillSelected)){
+                        if(ds.child("availabilityStatus").getValue().toString()=="true"){
+                            String laborName=ds.child("labourName").getValue().toString();
+                            String laborAge=ds.child("labourAge").getValue().toString();
+                            boolean b=false;
+                            Log.i("labor_info"," "+laborName+" "+laborAge);
+                            LaborAdapter labor = new LaborAdapter(laborName,laborAge);
+                            arrayAdapter.add(labor);
+                        }
+                    }
+                }
+            }
 
-        LaborAdapter[] users = new LaborAdapter[]{labor1,labor2, labor3};
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
-        ArrayAdapter<LaborAdapter> arrayAdapter
-                = new ArrayAdapter<LaborAdapter>(this, android.R.layout.simple_list_item_checked , users);
+
+
+        LaborAdapter[] users = new LaborAdapter[]{};
+
+//        ArrayAdapter<LaborAdapter> arrayAdapter
+//                = new ArrayAdapter<LaborAdapter>(this, android.R.layout.simple_list_item_checked , users);
+
 
 
         listView.setAdapter(arrayAdapter);
