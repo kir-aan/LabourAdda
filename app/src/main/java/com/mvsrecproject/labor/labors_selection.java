@@ -43,7 +43,7 @@ public class labors_selection extends AppCompatActivity {
 
         databaseRequests = FirebaseDatabase.getInstance().getReference("Requests");
 
-        listView = (ListView)findViewById(R.id.listView);
+        listView = findViewById(R.id.listView);
 
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
@@ -65,7 +65,6 @@ public class labors_selection extends AppCompatActivity {
         laborsRootNode.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                LaborAdapter[] labors;
                 for(DataSnapshot ds: dataSnapshot.getChildren()){
                     if(ds.child("labourSkill").getValue().equals(skillSelected)){
                         if(ds.child("availabilityStatus").getValue().toString()=="true"){
