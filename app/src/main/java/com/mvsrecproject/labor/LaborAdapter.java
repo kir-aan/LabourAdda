@@ -6,10 +6,15 @@ public class LaborAdapter implements Serializable {
 
     private String laborName;
     private String laborAge;
-
+    private String labourUID;
     private boolean active;
 
-    public LaborAdapter(String laborName, String laborAge)  {
+    public String getLabourUID() {
+        return labourUID;
+    }
+
+    public LaborAdapter(String labourUID, String laborName, String laborAge)  {
+        this.labourUID = labourUID;
         this.laborName= laborName;
         this.laborAge = laborAge;
         this.active= false;
