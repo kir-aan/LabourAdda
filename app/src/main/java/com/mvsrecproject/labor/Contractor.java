@@ -1,17 +1,16 @@
 package com.mvsrecproject.labor;
 
 public class Contractor {
-    String name; //contractor Name
+    String name; 
     String id;
-    long number;
     int ContractorAge;
     String AadharNum;
     String phoneNum;
     String ContractorLocation;
 
-    public Contractor(String name,long number) {
+    public Contractor(String name,String number) {
         this.name = name;
-        this.number=number;
+        this.phoneNum=number;
     }
 
     public Contractor(String id,String name,String phoneNum, int contractorAge, String aadharNum, String contractorLocation) {
@@ -31,17 +30,14 @@ public class Contractor {
         this.name = name;
     }
 
-//    public long getNumber() {
-//        return number;
-//    }
 
     public String getPhoneNum() {
         return phoneNum;
     }
 
-//    public void setNumber(long number) {
-//        this.number = number;
-//    }
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
 
     public int getContractorAge() {
         return ContractorAge;
