@@ -1,7 +1,7 @@
 package com.mvsrecproject.labor;
 
 public class Contractor {
-    String name; 
+    String name;
     String id;
     int ContractorAge;
     String AadharNum;

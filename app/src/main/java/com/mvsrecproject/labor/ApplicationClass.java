@@ -30,46 +30,47 @@ public class ApplicationClass extends Application {
             contractors=new ArrayList<Contractor>();
             labor = FirebaseAuth.getInstance().getCurrentUser();
             laborRootNode = FirebaseDatabase.getInstance()
-                    .getReference("Labors").child(labor.getUid()).child("labourSkill");
+                    .getReference("Labors");
             requestRootNode = FirebaseDatabase.getInstance().getReference("Requests");
 
             laborRootNode.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
-                    dataSnapshot.getValue();
-                    requestRootNode.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
-                            for (DataSnapshot ds1 : dataSnapshot1.getChildren()) {
-                                if (ds1.hasChild(dataSnapshot.getValue().toString())) {
-                                    if (ds1.child(dataSnapshot.getValue().toString()).hasChild(labor.getUid())) {
-                                        System.out.println("Found labour in requests");
-                                        System.out.println(ds1.child("contName").getValue());
-                                        System.out.println(ds1.child("phoneNum").getValue());
-                                        String contName = ds1.child("contName").getValue().toString();
-                                        String phoneNum = ds1.child("phoneNum").getValue().toString();
-                                        contractors.add(new Contractor(contName,phoneNum));
+                    if (dataSnapshot.hasChild(labor.getUid())) {
+                        requestRootNode.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
+                                for (DataSnapshot ds1 : dataSnapshot1.getChildren()) {
+                                    if (ds1.hasChild(dataSnapshot.child(labor.getUid()).child("labourSkill").getValue().toString())) {
+                                        if (ds1.child(dataSnapshot.child(labor.getUid()).child("labourSkill").getValue().toString()).hasChild(labor.getUid())) {
+                                            System.out.println("Found labour in requests");
+                                            System.out.println(ds1.child("contName").getValue());
+                                            System.out.println(ds1.child("phoneNum").getValue());
+                                            String contName = ds1.child("contName").getValue().toString();
+                                            String phoneNum = ds1.child("phoneNum").getValue().toString();
+                                            contractors.add(new Contractor(contName, phoneNum));
+                                        } else {
+                                            System.out.println("labour not found in requests");
+                                        }
                                     } else {
-                                        System.out.println("labour not found in requests");
+                                        System.out.println("L not Found");
                                     }
-                                } else {
-                                    System.out.println("L not Found");
                                 }
                             }
-                        }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                        }
-                    });
+                            }
+                        });
+                    }
                 }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled (@NonNull DatabaseError databaseError){
 
                 }
             });
+
         }
 
     }
