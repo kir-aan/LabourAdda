@@ -46,9 +46,13 @@ public class ApplicationClass extends Application {
                                             System.out.println("Found labour in requests");
                                             System.out.println(ds1.child("contName").getValue());
                                             System.out.println(ds1.child("phoneNum").getValue());
+                                            String UID=ds1.getKey().toString();
                                             String contName = ds1.child("contName").getValue().toString();
                                             String phoneNum = ds1.child("phoneNum").getValue().toString();
-                                            contractors.add(new Contractor(contName, phoneNum));
+                                            Contractor c=new Contractor(contName, phoneNum);
+                                            contractors.add(c);
+                                            c.setUID(UID);
+
                                         } else {
                                             System.out.println("labour not found in requests");
                                         }
@@ -65,8 +69,8 @@ public class ApplicationClass extends Application {
                         });
                     }
                 }
-                    @Override
-                    public void onCancelled (@NonNull DatabaseError databaseError){
+                @Override
+                public void onCancelled (@NonNull DatabaseError databaseError){
 
                 }
             });

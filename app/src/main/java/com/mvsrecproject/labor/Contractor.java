@@ -1,6 +1,7 @@
 package com.mvsrecproject.labor;
 
 public class Contractor {
+    String UID;
     String name;
     String id;
     int ContractorAge;
@@ -9,6 +10,7 @@ public class Contractor {
     String ContractorLocation;
 
     public Contractor(String name,String number) {
+
         this.name = name;
         this.phoneNum=number;
     }
@@ -20,6 +22,14 @@ public class Contractor {
         this.ContractorAge = contractorAge;
         this.AadharNum = aadharNum;
         this.ContractorLocation = contractorLocation;
+    }
+
+    public void setUID(String UID) {
+        this.UID = UID;
+    }
+
+    public String getUID() {
+        return UID;
     }
 
     public String getName() {

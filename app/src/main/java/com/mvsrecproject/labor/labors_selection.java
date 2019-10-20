@@ -123,10 +123,10 @@ public class labors_selection extends AppCompatActivity {
 
                 for(int i=0;i<sp.size();i++){
                     if(sp.valueAt(i)){
-                     LaborAdapter labor = (LaborAdapter) listView.getItemAtPosition(i);
-                     final String laborName = labor.getLaborName();
+                        LaborAdapter labor = (LaborAdapter) listView.getItemAtPosition(i);
+                        final String laborName = labor.getLaborName();
 
-                     databaseRequests.child(skillSelected)
+                        databaseRequests.child(skillSelected)
                                 .child(labor.getLabourUID()).child("LaborName").setValue(laborName);
                     }
                 }
