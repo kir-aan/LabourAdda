@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,6 +31,7 @@ public ArrayList<Contractor> contractors;
 Context context;
 DatabaseReference requestStatusRoot,laborRoot;
 FirebaseUser user;
+Switch sw;
 public ContractorAdapter(Context context,ArrayList<Contractor> list)
 {
     this.context=context;
@@ -48,7 +51,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         laborRoot=FirebaseDatabase.getInstance().getReference("Labors");
         user= FirebaseAuth.getInstance().getCurrentUser();
 
-
+        sw=itemView.findViewById(R.id.Avail);
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +81,7 @@ public class ViewHolder extends RecyclerView.ViewHolder {
        viewHolder.tvContName.setText(contractors.get(i).getName());
        final String contPhoneNum=contractors.get(i).getPhoneNum().toString();
        final String contID=contractors.get(i).getUID();
+       final String contName=contractors.get(i).getName();
        viewHolder.imgCall.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -97,10 +101,23 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
                 laborRoot.addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
                         if(dataSnapshot.hasChild(user.getUid())){
-                            requestStatusRoot.child(contID).child(user.getUid()).child("labourskill").setValue(dataSnapshot.child(user.getUid()).child("labourSkill").getValue().toString());
-                            requestStatusRoot.child(contID).child(user.getUid()).child("labourNum").setValue(dataSnapshot.child(user.getUid()).child("phoneNum").getValue().toString());
+                            requestStatusRoot.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
+                                    if(dataSnapshot1.exists()){
+                                    requestStatusRoot.child(contID).child(user.getUid()).child("labourskill").setValue(dataSnapshot.child(user.getUid()).child("labourSkill").getValue().toString());
+                                    requestStatusRoot.child(contID).child(user.getUid()).child("labourNum").setValue(dataSnapshot.child(user.getUid()).child("phoneNum").getValue().toString());}
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+
                         }
                     }
 
@@ -109,7 +126,12 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
                     }
                 });
+                contractors.clear();
                 viewHolder.itemView.setVisibility(View.GONE);
+                laborRoot.child(user.getUid()).child("availabilityStatus").setValue(false);
+
+                Toast.makeText(viewHolder.itemView.getContext(), "Hired for "+contName, Toast.LENGTH_SHORT).show();
+//                sw.setChecked(false);
             }
         });
 
