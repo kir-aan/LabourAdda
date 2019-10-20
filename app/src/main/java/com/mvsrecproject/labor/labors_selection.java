@@ -26,8 +26,8 @@ import com.google.firebase.database.ValueEventListener;
 public class labors_selection extends AppCompatActivity {
 
     public static final String TAG = "ListViewExample";
-    DatabaseReference laborsRootNode;
-    DatabaseReference databaseRequests;
+    DatabaseReference laborsRootNode,databaseRequests,contractorRootNode;
+    FirebaseUser currentContractor;
     Button btnSendRequest;
 
     private ListView listView;
@@ -41,7 +41,11 @@ public class labors_selection extends AppCompatActivity {
 
         laborsRootNode= FirebaseDatabase.getInstance().getReference("Labors");
 
-        databaseRequests = FirebaseDatabase.getInstance().getReference("Requests");
+        contractorRootNode = FirebaseDatabase.getInstance().getReference("Contractors");
+
+        currentContractor = FirebaseAuth.getInstance().getCurrentUser();
+
+        databaseRequests = FirebaseDatabase.getInstance().getReference("Requests").child(currentContractor.getUid());
 
         listView = findViewById(R.id.listView);
 
@@ -105,13 +109,24 @@ public class labors_selection extends AppCompatActivity {
                 if(listView.getCheckedItemCount()==0)
                     Toast.makeText(labors_selection.this, "Select atleast 1 labor", Toast.LENGTH_SHORT).show();
                 SparseBooleanArray sp = listView.getCheckedItemPositions();
-                FirebaseUser currentContractor = FirebaseAuth.getInstance().getCurrentUser();
+                contractorRootNode.child(currentContractor.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        databaseRequests.child("contName").setValue(dataSnapshot.child("name").getValue());
+                        databaseRequests.child("phoneNum").setValue(dataSnapshot.child("phoneNum").getValue());
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
                 for(int i=0;i<sp.size();i++){
                     if(sp.valueAt(i)){
-                     LaborAdapter labor = (LaborAdapter) listView.getItemAtPosition(i);
-                     final String laborName = labor.getLaborName();
+                        LaborAdapter labor = (LaborAdapter) listView.getItemAtPosition(i);
+                        final String laborName = labor.getLaborName();
 
-                     databaseRequests.child(currentContractor.getUid()).child(skillSelected)
+                        databaseRequests.child(skillSelected)
                                 .child(labor.getLabourUID()).child("LaborName").setValue(laborName);
                     }
                 }
