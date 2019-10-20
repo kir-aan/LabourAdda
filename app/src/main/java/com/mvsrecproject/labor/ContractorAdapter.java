@@ -12,6 +12,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -19,7 +27,8 @@ public class ContractorAdapter extends RecyclerView.Adapter<ContractorAdapter.Vi
 {
 public ArrayList<Contractor> contractors;
 Context context;
-
+DatabaseReference requestStatusRoot,laborRoot;
+FirebaseUser user;
 public ContractorAdapter(Context context,ArrayList<Contractor> list)
 {
     this.context=context;
@@ -27,13 +36,17 @@ public ContractorAdapter(Context context,ArrayList<Contractor> list)
 }
 public class ViewHolder extends RecyclerView.ViewHolder {
     TextView tvContName;
-    ImageView imgCall;
+    ImageView imgCall,imgAccept;
 
     public ViewHolder(@NonNull View itemView) {
         super(itemView);
 
         tvContName = itemView.findViewById(R.id.tvContName);
         imgCall=itemView.findViewById(R.id.imgCall);
+        imgAccept=itemView.findViewById(R.id.imgAccept);
+        requestStatusRoot=FirebaseDatabase.getInstance().getReference("Hired");
+        laborRoot=FirebaseDatabase.getInstance().getReference("Labors");
+        user= FirebaseAuth.getInstance().getCurrentUser();
 
 
         itemView.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +76,8 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
        viewHolder.itemView.setTag(contractors.get(i));
        viewHolder.tvContName.setText(contractors.get(i).getName());
-
+       final String contPhoneNum=contractors.get(i).getPhoneNum().toString();
+       final String contID=contractors.get(i).getUID();
        viewHolder.imgCall.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -76,6 +90,28 @@ public class ViewHolder extends RecyclerView.ViewHolder {
            }
        });
 
+        viewHolder.imgAccept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestStatusRoot.child(contID).child("contNum").setValue(contPhoneNum);
+
+                laborRoot.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.hasChild(user.getUid())){
+                            requestStatusRoot.child(contID).child(user.getUid()).child("labourskill").setValue(dataSnapshot.child(user.getUid()).child("labourSkill").getValue().toString());
+                            requestStatusRoot.child(contID).child(user.getUid()).child("labourNum").setValue(dataSnapshot.child(user.getUid()).child("phoneNum").getValue().toString());
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+                viewHolder.itemView.setVisibility(View.GONE);
+            }
+        });
 
 
 
