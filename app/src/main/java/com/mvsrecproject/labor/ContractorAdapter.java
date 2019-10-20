@@ -38,8 +38,8 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     TextView tvContName;
     ImageView imgCall,imgAccept;
 
-    public ViewHolder(@NonNull View itemView) {
-        super(itemView);
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
 
         tvContName = itemView.findViewById(R.id.tvContName);
         imgCall=itemView.findViewById(R.id.imgCall);
@@ -49,15 +49,15 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         user= FirebaseAuth.getInstance().getCurrentUser();
 
 
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-            }
-        });
+                }
+            });
 
+        }
     }
-}
 
 
     @NonNull
@@ -87,8 +87,8 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
 
 
-           }
-       });
+            }
+        });
 
         viewHolder.imgAccept.setOnClickListener(new View.OnClickListener() {
             @Override

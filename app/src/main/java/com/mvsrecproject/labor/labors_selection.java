@@ -130,8 +130,8 @@ public class labors_selection extends AppCompatActivity {
                                 .child(labor.getLabourUID()).child("LaborName").setValue(laborName);
                     }
                 }
+                Toast.makeText(labors_selection.this, "Request Sent!", Toast.LENGTH_SHORT).show();
             }
-
         });
 
 
