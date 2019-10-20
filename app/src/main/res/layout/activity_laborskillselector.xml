@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Book1Activity">
+    tools:context=".LaborSkillSelector">
 
     <TextView
         android:id="@+id/tvTypeOfSkill"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Masonry"
-            android:onClick="rbCheck"/>
+            />
 
         <RadioButton
             android:id="@+id/radioButton2"
@@ -42,7 +42,7 @@
             android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:text="Carpentry"
-            android:onClick="rbCheck"/>
+            />
 
         <RadioButton
             android:id="@+id/radioButton3"
@@ -51,7 +51,7 @@
             android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:text="Plumbing"
-            android:onClick="rbCheck"/>
+            />
 
         <RadioButton
             android:id="@+id/radioButton4"
@@ -60,7 +60,7 @@
             android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:text="Electrician"
-            android:onClick="rbCheck"/>
+            />
 
         <RadioButton
             android:id="@+id/radioButton5"
@@ -69,7 +69,7 @@
             android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:text="Painting"
-            android:onClick="rbCheck"/>
+            />
     </RadioGroup>
 
     <Button

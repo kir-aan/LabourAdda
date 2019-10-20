@@ -21,6 +21,44 @@
         android:inputType="phone" />
 
     <Button
+        android:id="@+id/btngetotp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="@string/getotp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/etOTP"
+            android:layout_centerHorizontal="true"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:hint="@string/otpNo"
+            android:inputType="number" />
+        <ProgressBar
+            android:id="@+id/OTPprogressBar"
+            style="?android:attr/progressBarStyle"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_toRightOf="@id/etOTP"
+            android:maxHeight="30dp"
+            android:minHeight="30dp" />
+
+    </RelativeLayout>
+
+
+
+
+
+    <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,4 +67,5 @@
         android:layout_marginTop="40dp"
         android:layout_marginRight="80dp"
         android:text="@string/login" />
+
 </LinearLayout>

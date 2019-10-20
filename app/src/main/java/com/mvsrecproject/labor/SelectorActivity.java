@@ -1,7 +1,7 @@
-package com.vineethn7.labor;
+package com.mvsrecproject.labor;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +20,7 @@ public class SelectorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(SelectorActivity.this, com.vineethn7.labor.ProfileActvity.class);
+                Intent intent = new Intent(SelectorActivity.this, com.mvsrecproject.labor.ProfileActvity.class);
                 intent.putExtra("code",1);
                 String phoneNum = getIntent().getStringExtra("PhoneNum");
                 intent.putExtra("phoneNum",phoneNum);
@@ -31,8 +31,10 @@ public class SelectorActivity extends AppCompatActivity {
         btnLabour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SelectorActivity.this, com.vineethn7.labor.ProfileActvity.class);
+                Intent intent = new Intent(SelectorActivity.this, com.mvsrecproject.labor.ProfileActvity.class);
                 intent.putExtra("code",2);
+                String phoneNum = getIntent().getStringExtra("PhoneNum");
+                intent.putExtra("phoneNum",phoneNum);
                 startActivity(intent);
             }
         });
