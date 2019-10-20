@@ -20,7 +20,7 @@ public class ApplicationClass extends Application {
     public static ArrayList<Contractor> contractors;
 
     FirebaseUser labor;
-    DatabaseReference laborRootNode,requestRootNode;
+    DatabaseReference laborRootNode,requestRootNode,hiredRoot;
 
 
     @Override
@@ -32,6 +32,7 @@ public class ApplicationClass extends Application {
             laborRootNode = FirebaseDatabase.getInstance()
                     .getReference("Labors");
             requestRootNode = FirebaseDatabase.getInstance().getReference("Requests");
+            hiredRoot=FirebaseDatabase.getInstance().getReference("Hired");
 
             laborRootNode.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -46,12 +47,33 @@ public class ApplicationClass extends Application {
                                             System.out.println("Found labour in requests");
                                             System.out.println(ds1.child("contName").getValue());
                                             System.out.println(ds1.child("phoneNum").getValue());
-                                            String UID=ds1.getKey().toString();
+                                            final String UID=ds1.getKey().toString();
+
+
                                             String contName = ds1.child("contName").getValue().toString();
                                             String phoneNum = ds1.child("phoneNum").getValue().toString();
                                             Contractor c=new Contractor(contName, phoneNum);
                                             contractors.add(c);
                                             c.setUID(UID);
+                                            hiredRoot.addValueEventListener(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                    if(dataSnapshot.hasChild(UID)){
+                                                        if(dataSnapshot.child(UID).hasChild(labor.getUid())){
+                                                            contractors.clear();
+                                                        }
+                                                    }
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                }
+                                            });
+
+//                                            Contractor c=new Contractor(contName, phoneNum);
+//                                            contractors.add(c);
+//                                            c.setUID(UID);
 
                                         } else {
                                             System.out.println("labour not found in requests");
@@ -74,7 +96,7 @@ public class ApplicationClass extends Application {
 
                 }
             });
-
+            //hired has contractor and has contractor.labid then contractors.remove;
         }
 
     }
