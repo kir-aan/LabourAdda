@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "231202820373",
+    "firebase_url": "https://labour-adda-b47f2.firebaseio.com",
+    "project_id": "labour-adda-b47f2",
+    "storage_bucket": "labour-adda-b47f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:231202820373:android:151f6a5a6079941266d91c",
+        "android_client_info": {
+          "package_name": "com.mvsrproject.labor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "231202820373-89mkbfnr8q7lsqcj7aeuutt8d4pcl5i0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mvsrproject.labor",
+            "certificate_hash": "0eae73fdcfd66c6788f9f0ea2de175c9cd1dce27"
+          }
+        },
+        {
+          "client_id": "231202820373-mt51ha1uuiircsjok9jtb93d0k4m6e9e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mvsrproject.labor",
+            "certificate_hash": "31ed8a1701b1bc4913e8551ec80ee0c7590fa258"
+          }
+        },
+        {
+          "client_id": "231202820373-riq8jkv5pgmj40978vjme5ahvko2r7f7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcTmr07g__ADeYVr4ty3uBgIVn2S-osVs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "231202820373-riq8jkv5pgmj40978vjme5ahvko2r7f7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
