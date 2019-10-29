@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     ProgressBar OTPprogressBar;
     FirebaseAuth mAuth;
     private String OTPCode;
+    int n=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +101,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                    if(n==0){
+                        Intent intent = new Intent(LoginActivity.this,SelectorActivity.class);
+                        startActivity(intent);
+                    }
                     nextActivity();
                 }
                 else{
@@ -138,7 +143,7 @@ public class LoginActivity extends AppCompatActivity {
             intent = new Intent(LoginActivity.this, LaborSkillSelector.class);
             startActivity(intent);
         }
-        else{
+        else if(x==1){
             intent = new Intent(LoginActivity.this,AvailabilityActivity.class);
             startActivity(intent);
         }
@@ -147,8 +152,6 @@ public class LoginActivity extends AppCompatActivity {
     public void nextActivity(){
         DatabaseReference contractorRootNode = FirebaseDatabase.getInstance().getReference().child("Contractors");
         DatabaseReference laborsRootNode = FirebaseDatabase.getInstance().getReference().child("Labors");
-
-
         if(FirebaseAuth.getInstance().getCurrentUser()!=null){
             final String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
             contractorRootNode.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -156,6 +159,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(dataSnapshot.hasChild(currentUser)){
                         startNextActivity(0);
+                        n=1;
                     }
                 }
 
@@ -169,6 +173,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                    if(dataSnapshot.hasChild(currentUser)){
                        startNextActivity(1);
+                       n=1;
                    }
                 }
 
