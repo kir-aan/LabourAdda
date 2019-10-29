@@ -19,7 +19,6 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
     EditText etName,etID,etAge,etLoc;
     Spinner spSkillset;
     Button btnDone;
-//    String spinnerValue="";
     int code;
 
     DatabaseReference databaseLabors,databaseContractors;
@@ -53,7 +52,7 @@ public class ProfileActvity extends AppCompatActivity implements AdapterView.OnI
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//        spinnerValue = parent.getItemAtPosition(position).toString();
+    
     }
 
     @Override
