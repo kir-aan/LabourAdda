@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     ProgressBar OTPprogressBar;
     FirebaseAuth mAuth;
     private String OTPCode;
-    int n=0;
+    int n=0; //to check if the current user is new user.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,10 +101,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                    //if user is new user
                     if(n==0){
                         Intent intent = new Intent(LoginActivity.this,SelectorActivity.class);
                         startActivity(intent);
                     }
+                    //else
                     nextActivity();
                 }
                 else{
@@ -159,7 +161,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(dataSnapshot.hasChild(currentUser)){
                         startNextActivity(0);
-                        n=1;
+                        n=1;//to indicate that the user is not new user
                     }
                 }
 
@@ -173,7 +175,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                    if(dataSnapshot.hasChild(currentUser)){
                        startNextActivity(1);
-                       n=1;
+                       n=1;//to indicate that the user is not new user
                    }
                 }
 
