@@ -41,6 +41,7 @@ public class LaborSkillSelector extends AppCompatActivity {
                     Intent intent= new Intent(LaborSkillSelector.this, com.mvsrecproject.labor.labors_selection.class);
                     intent.putExtra("skillSelected",skill);
                     startActivity(intent);
+                    Toast.makeText(LaborSkillSelector.this, "Selected skill:"+skill, Toast.LENGTH_SHORT).show();
                 }
             }
         });
