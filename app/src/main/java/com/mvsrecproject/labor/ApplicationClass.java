@@ -70,11 +70,6 @@ public class ApplicationClass extends Application {
 
                                                 }
                                             });
-
-//                                            Contractor c=new Contractor(contName, phoneNum);
-//                                            contractors.add(c);
-//                                            c.setUID(UID);
-
                                         } else {
                                             System.out.println("labour not found in requests");
                                         }

@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     ProgressBar OTPprogressBar;
     FirebaseAuth mAuth;
     private String OTPCode;
+    int n=0; //to check if the current user is new user.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,10 +101,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Intent intent = new Intent(LoginActivity.this,SelectorActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent.putExtra("PhoneNum",etPhone.getText().toString().trim());
-                    startActivity(intent);
+                    //if user is new user
+                    if(n==0){
+                        Intent intent = new Intent(LoginActivity.this,SelectorActivity.class);
+                        startActivity(intent);
+                    }
+                    //else
+                    nextActivity();
                 }
                 else{
                     Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -141,7 +145,7 @@ public class LoginActivity extends AppCompatActivity {
             intent = new Intent(LoginActivity.this, LaborSkillSelector.class);
             startActivity(intent);
         }
-        else{
+        else if(x==1){
             intent = new Intent(LoginActivity.this,AvailabilityActivity.class);
             startActivity(intent);
         }
@@ -150,8 +154,6 @@ public class LoginActivity extends AppCompatActivity {
     public void nextActivity(){
         DatabaseReference contractorRootNode = FirebaseDatabase.getInstance().getReference().child("Contractors");
         DatabaseReference laborsRootNode = FirebaseDatabase.getInstance().getReference().child("Labors");
-
-
         if(FirebaseAuth.getInstance().getCurrentUser()!=null){
             final String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
             contractorRootNode.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -159,6 +161,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(dataSnapshot.hasChild(currentUser)){
                         startNextActivity(0);
+                        n=1;//to indicate that the user is not new user
                     }
                 }
 
@@ -172,6 +175,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                    if(dataSnapshot.hasChild(currentUser)){
                        startNextActivity(1);
+                       n=1;//to indicate that the user is not new user
                    }
                 }
 
