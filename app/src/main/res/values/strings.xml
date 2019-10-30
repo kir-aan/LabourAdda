@@ -31,5 +31,6 @@
     <string name="name_age">NAME(AGE)</string>
     <string name="status">STATUS</string>
     <string name="send_request">SEND REQUEST</string>
+    <string name="hiredlabors">HiredLabors</string>
 
 </resources>

@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".labors_selection"></activity>
+        <activity android:name=".HiredStatus"></activity>
+        <activity android:name=".labors_selection" />
         <activity android:name=".LaborSkillSelector" />
         <activity android:name=".AvailabilityActivity" />
         <activity android:name=".ProfileActvity" />

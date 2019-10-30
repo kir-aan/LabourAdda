@@ -9,6 +9,10 @@ public class Labors {
     String LabourLocation;
     String phoneNum;
     boolean availabilityStatus=false;
+    public Labors(String labourName,String phoneNum){
+        this.phoneNum=phoneNum;
+        this.LabourName=labourName;
+    }
     public Labors(){
 
     }
